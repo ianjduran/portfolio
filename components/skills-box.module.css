@@ -1,0 +1,24 @@
+ .skillBox {
+     margin: 1rem;
+     padding: 1.5rem;
+     text-align: left;
+     color: inherit;
+     text-decoration: none;
+     border: 1px solid #939393;
+     border-radius: 10px;
+     transition: color 0.15s ease, border-color 0.15s ease;
+     max-width: 300px;
+     box-shadow: 3px 3px 3px 0.5px rgba(0, 0, 0, 0.4);
+ }
+
+
+ .skillBox h2 {
+     font-size: 1.5rem;
+     text-justify: center;
+ }
+
+ .skillBox p {
+     margin: 0;
+     font-size: 1.25rem;
+     line-height: 1.5;
+ }

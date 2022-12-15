@@ -1,0 +1,28 @@
+.container {
+    padding: 0 2rem;
+}
+
+.grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+}
+
+.backToHome{
+    color: dodgerblue;
+}
+
+.description {
+    margin: 2rem 0;
+    line-height: 1.5;
+    font-size: 1.2rem;
+}
+
+.title {
+    text-align: center;
+    margin: 2rem 0;
+    line-height: 1.5;
+    font-size: 3rem;
+}
