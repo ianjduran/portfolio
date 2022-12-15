@@ -32,60 +32,11 @@ export default function Home() {
         &gt; I&apos;m a student who keeps looking to grow and expand his knowledge about technology and to share his passion with people in his community. <br/> As a Robotics student I look forward on creating and developing different machines that improve people&apos;s quality of life.
         </p>
 
-        <h1>Skills</h1>
-        <div className={styles.grid}>
-          <div className={skillsBoxStyle.skillBox}>
-            <span className={styles.logo}>
-              <Image src="/robotics.svg" alt="Logo" width={72} height={72} />
-            </span>
-            <h2>Robotics</h2>
-            <div className={keywordStyles.primary}>
-              <KeywordBox>Kicad</KeywordBox>
-              <KeywordBox>ROS</KeywordBox>
-              <KeywordBox>FreeRTOS</KeywordBox>
-              <KeywordBox>Prototyping</KeywordBox>
-              <KeywordBox>CAD</KeywordBox>
-              <KeywordBox>Control Theory</KeywordBox>
-            </div>
-          </div>
-          <div className={skillsBoxStyle.skillBox}>
-            <span className={styles.logo}>
-              <Image src="/code.svg" alt="Logo" width={60} height={60} />
-            </span>
-            <h2> Programming </h2>
-            <div>
-              <KeywordBox>C++</KeywordBox>
-              <KeywordBox>Python</KeywordBox>
-              <KeywordBox>Linux</KeywordBox>
-              <KeywordBox>MATLAB</KeywordBox>
-              <KeywordBox>Git</KeywordBox>
-              {/* <KeywordBox>R</KeywordBox> */}
-              <KeywordBox>Javascript</KeywordBox>
-              <KeywordBox>Node.JS</KeywordBox>
-              <KeywordBox>MongoDB</KeywordBox>
-              <KeywordBox>SQL</KeywordBox>
-              <KeywordBox>AWS</KeywordBox>
-            </div>
-          </div>
-
-          {/* <div className={skillsBoxStyle.skillBox}>
-            <span className={styles.logo}>
-              <Image src="/code.svg" alt="Logo" width={60} height={60} />
-            </span>
-            <h2> Tools </h2>
-            <div>
-              <KeywordBox>Git</KeywordBox>
-            </div>
-          </div> */}
-
-        </div>
-        <p> Don&apos;t know if deberia hacer una pagina aparte para el about.</p>
         <br />
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+          <a href="/about" className={styles.card}>
             <h2>About me &rarr;</h2>
             <p>Skills, Education, Awards, Interests <br />
-              <em>Don&apos;t know if i should leave this</em>
             </p>
           </a>
 
@@ -95,8 +46,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
+            href="https://drive.google.com/file/d/1KXRZaNrpHVHZFRE-Amym2TTo8yk1ao07/view?usp=sharing"
           >
             <h2>Get My Resume &rarr;</h2>
           </a>

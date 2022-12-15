@@ -1,4 +1,4 @@
-.box {
+.box, .boxOrange {
     font-size: 90%;
     font-family: 'Oxygen Mono', Oxygen;
     margin: 0.2em 0.3em;
@@ -19,7 +19,7 @@
     border: none;
 }
 
-div.primary .box:hover {
+.boxOrange:hover {
     background-color: var(--color2);
     color: azure;
     /* transition: 0.3s; */
