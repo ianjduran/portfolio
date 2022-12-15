@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&family=Oxygen:wght@400;700&family=Titillium+Web:wght@400;700&display=swap');
+
+:root {
+  /* --color1: rgb(61, 64, 91); */
+  --color1: rgb(63, 143, 106);
+  --color2: rgba(224, 122, 95);
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: 'Titillium Web', Oxygen, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 

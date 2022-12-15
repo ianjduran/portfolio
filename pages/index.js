@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import KeywordBox from '../components/keyword-box'
 import styles from '../styles/Home.module.css'
+import keywordStyles from '../components/keyword-box.module.css'
+import skillsBoxStyle from '../components/skills-box.module.css'
 
 export default function Home() {
   return (
@@ -12,55 +15,104 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Hello <a>There!</a>
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
+        <span><strong>Ian Javier Duran Román</strong></span>
+
+        <span>B.S. in Robotics and Digital Systems Engineering <br /></span>
+
+        {/* <p className={styles.description}>
+          Get started by editing {' '}
           <code className={styles.code}>pages/index.js</code>
+        </p> */}
+        <p className={styles.description}>
+        &gt; I&apos;m a student who keeps looking to grow and expand his knowledge about technology and to share his passion with people in his community. <br/> As a Robotics student I look forward on creating and developing different machines that improve people&apos;s quality of life.
         </p>
 
+        <h1>Skills</h1>
+        <div className={styles.grid}>
+          <div className={skillsBoxStyle.skillBox}>
+            <span className={styles.logo}>
+              <Image src="/robotics.svg" alt="Logo" width={72} height={72} />
+            </span>
+            <h2>Robotics</h2>
+            <div className={keywordStyles.primary}>
+              <KeywordBox>Kicad</KeywordBox>
+              <KeywordBox>ROS</KeywordBox>
+              <KeywordBox>FreeRTOS</KeywordBox>
+              <KeywordBox>Prototyping</KeywordBox>
+              <KeywordBox>CAD</KeywordBox>
+              <KeywordBox>Control Theory</KeywordBox>
+            </div>
+          </div>
+          <div className={skillsBoxStyle.skillBox}>
+            <span className={styles.logo}>
+              <Image src="/code.svg" alt="Logo" width={60} height={60} />
+            </span>
+            <h2> Programming </h2>
+            <div>
+              <KeywordBox>C++</KeywordBox>
+              <KeywordBox>Python</KeywordBox>
+              <KeywordBox>Linux</KeywordBox>
+              <KeywordBox>MATLAB</KeywordBox>
+              <KeywordBox>Git</KeywordBox>
+              {/* <KeywordBox>R</KeywordBox> */}
+              <KeywordBox>Javascript</KeywordBox>
+              <KeywordBox>Node.JS</KeywordBox>
+              <KeywordBox>MongoDB</KeywordBox>
+              <KeywordBox>SQL</KeywordBox>
+              <KeywordBox>AWS</KeywordBox>
+            </div>
+          </div>
+
+          {/* <div className={skillsBoxStyle.skillBox}>
+            <span className={styles.logo}>
+              <Image src="/code.svg" alt="Logo" width={60} height={60} />
+            </span>
+            <h2> Tools </h2>
+            <div>
+              <KeywordBox>Git</KeywordBox>
+            </div>
+          </div> */}
+
+        </div>
+        <p> Don&apos;t know if deberia hacer una pagina aparte para el about.</p>
+        <br />
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+            <h2>About me &rarr;</h2>
+            <p>Skills, Education, Awards, Interests <br />
+              <em>Don&apos;t know if i should leave this</em>
+            </p>
           </a>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
+            <h2>Current projects &rarr;</h2>
+            <p>Let&apos;s explore what I&apos;m currently working on!</p>
           </a>
 
           <a
             href="https://github.com/vercel/next.js/tree/canary/examples"
             className={styles.card}
           >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
+            <h2>Get My Resume &rarr;</h2>
           </a>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+
         </div>
       </main>
 
       <footer className={styles.footer}>
+        <a>&copy;	2022 Ian Duran </a>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Built with NextJS and {' '}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
