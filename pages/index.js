@@ -4,6 +4,7 @@ import KeywordBox from '../components/keyword-box'
 import styles from '../styles/Home.module.css'
 import keywordStyles from '../components/keyword-box.module.css'
 import skillsBoxStyle from '../components/skills-box.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -28,22 +29,25 @@ export default function Home() {
           Get started by editing {' '}
           <code className={styles.code}>pages/index.js</code>
         </p> */}
+
+        {/* TODO: ADD SOCIAL MEDIA BUTTONS */}
+
         <p className={styles.description}>
         &gt; I&apos;m a student who keeps looking to grow and expand his knowledge about technology and to share his passion with people in his community. <br/> As a Robotics student I look forward on creating and developing different machines that improve people&apos;s quality of life.
         </p>
 
         <br />
         <div className={styles.grid}>
-          <a href="/about" className={styles.card}>
+          <Link href="/about" className={styles.card}>
             <h2>About me &rarr;</h2>
             <p>Skills, Education, Awards, Interests <br />
             </p>
-          </a>
+          </Link>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <Link href="/projects" className={styles.card}>
             <h2>Current projects &rarr;</h2>
             <p>Let&apos;s explore what I&apos;m currently working on!</p>
-          </a>
+          </Link>
 
           <a
             href="https://drive.google.com/file/d/1KXRZaNrpHVHZFRE-Amym2TTo8yk1ao07/view?usp=sharing"
