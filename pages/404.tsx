@@ -14,7 +14,7 @@ const PageNotFound: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col flex-1 w-full px-20 ">
+      <main className="flex flex-col flex-1 w-full ">
         <Navbar />
         <div className="flex flex-col mt-12 text-center font-titillium">
           <h1 className="text-7xl font-bold dark:text-white">
