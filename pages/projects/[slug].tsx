@@ -16,7 +16,7 @@ export default function projectDetails({ frontMatter, mdxSource }: any) {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="items-center content-center justify-center object-center mx-auto  dark:text-white font-oxygen md:w-2/3">
+      <main className="items-center content-center justify-center object-center mx-auto  dark:text-white font-oxygen md:w-full">
         <button
           onClick={() => router.back()}
           className="py-2 text-lg font-bold dark:text-white"
@@ -46,7 +46,7 @@ export default function projectDetails({ frontMatter, mdxSource }: any) {
           </a>
         )}
 
-          <div className="w-full max-w-5xl mt-8 prose text-justify dark:text-white dark:prose-headings:text-white">
+          <div className="w-full max-w-5xl justify-center content-center mt-8 prose text-justify dark:text-white dark:prose-headings:text-white">
             <MDXRemote {...mdxSource} />
           </div>
       </main>

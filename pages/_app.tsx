@@ -17,7 +17,7 @@ const oxygen = Oxygen({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${oxygen.variable} ${titillium.variable} font-sans dark:bg-zinc-900 w-full px-20 max-w-screen-2xl`}>
+    <main className={`${oxygen.variable} ${titillium.variable} font-sans dark:bg-zinc-900 w-full px-6 md:px-40 md:max-w-screen-2xl`}>
       <Component {...pageProps} />
     </main>
   )
