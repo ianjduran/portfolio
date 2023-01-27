@@ -1,34 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&family=Oxygen:wght@400;700&family=Titillium+Web:wght@400;700&display=swap');
-
-:root {
-  /* --color1: rgb(61, 64, 91); */
-  --color1: rgb(63, 143, 106);
-  --color2: rgba(224, 122, 95);
-}
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Titillium Web', Oxygen, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
