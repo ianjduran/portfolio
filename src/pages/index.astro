@@ -4,8 +4,6 @@ import PageLayout from "@layouts/PageLayout.astro"
 import ArrowCard from "@components/ArrowCard"
 import StackCard from "@components/StackCard.astro"
 import { SITE, SOCIALS } from "@consts"
-import TwinklingStars from "@components/TwinklingStars.astro"
-import MeteorShower from "@components/MeteorShower.astro"
 
 const projects = (await getCollection("projects"))
   .filter(project => !project.data.draft)
@@ -37,26 +35,38 @@ const stack = [
 const roboticsSkills = [
   { 
     text: "ROS/ROS2", 
-    icon: null,
-    href: null
+    icon: "",
+    href: ""
   },
   { 
     text: "Linux", 
+    icon: "",
+    href: ""
   },
   { 
     text: "PCB Design", 
+    icon: "",
+    href: ""
   },
   { 
     text: "RTOS", 
+    icon: "",
+    href: ""
   },
   {
-    text: "Kicad",
+    text: "Kicad", 
+    icon: "",
+    href: ""
   },
   {
-    text: "Testing"
+    text: "Testing", 
+    icon: "",
+    href: ""
   },
   {
-    text: "Signal Analysis"
+    text: "Signal Analysis", 
+    icon: "",
+    href: ""
   }
 ]
 ---
