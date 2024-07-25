@@ -1,0 +1,195 @@
+---
+import { getCollection } from "astro:content"
+import PageLayout from "@layouts/PageLayout.astro"
+import ArrowCard from "@components/ArrowCard"
+import StackCard from "@components/StackCard.astro"
+import { SITE, SOCIALS } from "@consts"
+import TwinklingStars from "@components/TwinklingStars.astro"
+import MeteorShower from "@components/MeteorShower.astro"
+
+const projects = (await getCollection("projects"))
+  .filter(project => !project.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0,3)
+
+const stack = [
+  { 
+    text: "Astro", 
+    icon: "astro", 
+    href: "https://astro.build" 
+  },
+  { 
+    text: "Javascript", 
+    icon: "javascript", 
+    href: "https://www.javascript.com" 
+  },
+  { 
+    text: "Typescript", 
+    icon: "typescript", 
+    href: "https://www.typescriptlang.org" 
+  },
+  { 
+    text: "Tailwind CSS", 
+    icon: "tailwind", 
+    href: "https://tailwindcss.com" 
+  },
+]
+const roboticsSkills = [
+  { 
+    text: "ROS/ROS2", 
+    icon: null,
+    href: null
+  },
+  { 
+    text: "Linux", 
+  },
+  { 
+    text: "PCB Design", 
+  },
+  { 
+    text: "RTOS", 
+  },
+  {
+    text: "Kicad",
+  },
+  {
+    text: "Testing"
+  },
+  {
+    text: "Signal Analysis"
+  }
+]
+---
+
+<PageLayout title="Home" description={SITE.DESCRIPTION}>
+
+
+  
+  <!-- HERO -->
+  <section class="relative h-screen w-full">
+    
+    <div class="animate absolute h-full w-full flex items-center">
+      <div class='mx-auto md:ml-32 relative w-full h-full flex items-center'>
+        <div class='p-5'>
+          <p class='animated text-lg md:text-xl lg:text-lg opacity-75'>
+            Hey There! My name is
+          </p>
+          <p class='animated text-2xl md:text-3xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% bg-clip-text text-transparent'>
+            Ian Javier Duran Román
+          </p>
+          <p class='animated text-sm md:text-base font-medium lg:text-lg opacity-75'>
+            Robotics and Digital Systems Engineer
+          </p>
+          <div id="ctaButtons" class='animated flex flex-wrap gap-4 mt-5'>
+            <a href='/projects' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
+              Get my resume!
+            </a>
+            <a href='/work' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+              View my work
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="relative bg-white dark:bg-black">
+    <div class="mx-auto md:ml-32 max-w-screen-sm p-5 space-y-24 pb-16">
+
+      <!-- About Section -->
+      <section class="animate">
+        <article>
+          <p>I am a passionate about <b><i>Software and Embedded Systems</i></b>, enthusiast about design and photography. Also known as a <b><i>student</i></b>, <b><i>minimalist</i></b>, <b><i>eternal optimist</i></b>.</p>
+          <p>I love to both build and break things. I am motivated by challenging projects with people of different disciplines, I focus on dynamic problem solving.</p>
+          <p>On my free times I love exploring and developing my creative skills, finding a good balance and finding more integrative solutions.</p>
+          <p>During my career,</p>
+          <p>I worked in different projects that involved challenges in both software and hardware elements, primarily for academic purposes. These projects were developed delivering fast, elegant code along with good results and great user experience.</p>
+          <p>Check out down below my work and projects!</p>
+          <!-- <p>Now</p>
+          <p>I currently work as a software engineer at StreamlineFS, where I do product planning, design and development.</p> -->
+        </article>
+      </section>
+    </div>
+    <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
+      <!-- Tech Stack Section -->
+      <section class="animate">
+        <div class="space-y-4">
+          <p class="font-semibold text-black dark:text-white">
+            My skills
+          </p>
+          <div class="flex flex-wrap items-center gap-2 mt-5">
+            {stack.map(item => (
+              <StackCard 
+                text={item.text}
+                icon={item.icon}
+                href={item.href}
+              />
+            ))}
+          </div>
+          <p>
+            Robotics
+          </p>
+          <div class="flex flex-wrap items-center gap-2 mt-5">
+            {roboticsSkills.map(item => (
+              <StackCard 
+                text={item.text}
+                icon={item.icon}
+                href={item.href}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Preview Section -->
+      <section class="animate">
+        <div class="space-y-4">
+          <div class="flex justify-between">
+            <p class="font-semibold text-black dark:text-white">
+              Recent projects
+            </p>
+            <a href="/projects" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+                All projects
+              </span>
+            </a>
+          </div>
+          <ul class="space-y-4">
+            {projects.map((project) => (
+              <li>
+                <ArrowCard entry={project} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="animate">
+        <div>
+          <p class="font-semibold text-black dark:text-white">
+            Let's Connect
+          </p>
+          <p>
+            Reach out to me via email or on social media.
+          </p>
+          <div class="grid grid-cols-4 gap-y-2 mt-4 auto-cols-min">
+            {SOCIALS.map(social => (
+              <div class="col-span-1 flex items-center gap-1">
+                <span class="whitespace-nowrap truncate">
+                  {social.NAME}
+                </span>
+              </div>
+              <div class="col-span-3 truncate">
+                <a href={social.HREF} target="_blank" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+                  <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+                    {social.TEXT}
+                  </span>
+                </a>
+              </div>
+            ))}
+        </div>
+      </section>
+    </div>
+  </div>
+</PageLayout>
