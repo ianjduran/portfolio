@@ -10,64 +10,51 @@ const projects = (await getCollection("projects"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 
-const stack = [
-  { 
-    text: "Astro", 
-    icon: "astro", 
-    href: "https://astro.build" 
-  },
-  { 
-    text: "Javascript", 
-    icon: "javascript", 
-    href: "https://www.javascript.com" 
-  },
-  { 
-    text: "Typescript", 
-    icon: "typescript", 
-    href: "https://www.typescriptlang.org" 
-  },
-  { 
-    text: "Tailwind CSS", 
-    icon: "tailwind", 
-    href: "https://tailwindcss.com" 
-  },
-]
-const roboticsSkills = [
-  { 
-    text: "ROS/ROS2", 
-    icon: "",
-    href: ""
-  },
-  { 
-    text: "Linux", 
-    icon: "",
-    href: ""
-  },
-  { 
-    text: "PCB Design", 
-    icon: "",
-    href: ""
-  },
-  { 
-    text: "RTOS", 
-    icon: "",
-    href: ""
+const skillCategories = [
+  {
+    label: "Embedded & Robotics",
+    skills: [
+      { text: "Embedded C/C++", icon: "", href: "" },
+      { text: "ROS/ROS2", icon: "", href: "" },
+      { text: "PCB Design", icon: "", href: "" },
+      { text: "CAN Protocol", icon: "", href: "" },
+      { text: "RTOS", icon: "", href: "" },
+      { text: "KiCad", icon: "", href: "" },
+      { text: "Sensor Fusion", icon: "", href: "" },
+      { text: "Linux", icon: "", href: "" },
+    ]
   },
   {
-    text: "Kicad", 
-    icon: "",
-    href: ""
+    label: "Cloud & Data",
+    skills: [
+      { text: "AWS (S3, Lambda, Glue)", icon: "", href: "" },
+      { text: "Python", icon: "", href: "" },
+      { text: "PostgreSQL", icon: "", href: "" },
+      { text: "MySQL", icon: "", href: "" },
+      { text: "Terraform", icon: "", href: "" },
+      { text: "Power BI", icon: "", href: "" },
+    ]
   },
   {
-    text: "Testing", 
-    icon: "",
-    href: ""
+    label: "DevOps & Monitoring",
+    skills: [
+      { text: "Docker", icon: "", href: "" },
+      { text: "Kubernetes", icon: "", href: "" },
+      { text: "Prometheus", icon: "", href: "" },
+      { text: "Grafana", icon: "", href: "" },
+      { text: "OpenSearch", icon: "", href: "" },
+      { text: "Git", icon: "", href: "" },
+    ]
   },
   {
-    text: "Signal Analysis", 
-    icon: "",
-    href: ""
-  }
+    label: "Web",
+    skills: [
+      { text: "Javascript", icon: "javascript", href: "https://www.javascript.com" },
+      { text: "Typescript", icon: "typescript", href: "https://www.typescriptlang.org" },
+      { text: "Astro", icon: "astro", href: "https://astro.build" },
+      { text: "Tailwind CSS", icon: "tailwind", href: "https://tailwindcss.com" },
+    ]
+  },
 ]
 ---
 
@@ -81,20 +68,20 @@ const roboticsSkills = [
     <div class="animate absolute h-full w-full flex items-center">
       <div class='mx-auto md:ml-32 relative w-full h-full flex items-center'>
         <div class='p-5'>
-          <p class='animated text-lg md:text-xl lg:text-lg opacity-75'>
+          <p class='animated text-lg md:text-xl lg:text-lg opacity-75 font-display tracking-wide'>
             Hey There! My name is
           </p>
-          <p class='animated text-2xl md:text-3xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% bg-clip-text text-transparent'>
+          <p class='animated text-3xl md:text-4xl lg:text-6xl font-bold font-display bg-gradient-to-r from-primary via-blue-400 to-teal-400 bg-clip-text text-transparent pb-2'>
             Ian Javier Duran Román
           </p>
-          <p class='animated text-sm md:text-base font-medium lg:text-lg opacity-75'>
+          <p class='animated text-sm md:text-base font-medium lg:text-lg opacity-75 font-display tracking-widest uppercase'>
             Robotics and Digital Systems Engineer
           </p>
           <div id="ctaButtons" class='animated flex flex-wrap gap-4 mt-5'>
-            <a href='/projects' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
+            <a href='/projects' class='py-2 px-6 rounded-lg truncate text-xs md:text-sm lg:text-base bg-primary text-white hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(37,123,244,0.4)] transition-all duration-300 font-display tracking-wide'>
               Get my resume!
             </a>
-            <a href='/work' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+            <a href='/work' class='py-2 px-6 truncate rounded-lg text-xs md:text-sm lg:text-base border border-black/20 dark:border-white/20 hover:border-primary dark:hover:border-primary hover:bg-primary/5 hover:text-primary dark:hover:bg-primary/10 transition-all duration-300 font-display tracking-wide backdrop-blur-sm'>
               View my work
             </a>
           </div>
@@ -109,14 +96,11 @@ const roboticsSkills = [
       <!-- About Section -->
       <section class="animate">
         <article>
-          <p>I am a passionate about <b><i>Software and Embedded Systems</i></b>, enthusiast about design and photography. Also known as a <b><i>student</i></b>, <b><i>minimalist</i></b>, <b><i>eternal optimist</i></b>.</p>
-          <p>I love to both build and break things. I am motivated by challenging projects with people of different disciplines, I focus on dynamic problem solving.</p>
-          <p>On my free times I love exploring and developing my creative skills, finding a good balance and finding more integrative solutions.</p>
-          <p>During my career,</p>
-          <p>I worked in different projects that involved challenges in both software and hardware elements, primarily for academic purposes. These projects were developed delivering fast, elegant code along with good results and great user experience.</p>
-          <p>Check out down below my work and projects!</p>
-          <!-- <p>Now</p>
-          <p>I currently work as a software engineer at StreamlineFS, where I do product planning, design and development.</p> -->
+          <p>I am passionate about <b><i>Embedded Systems, Robotics, and Cloud Engineering</i></b> — and equally enthusiastic about design and photography. Also known as a <b><i>builder</i></b>, <b><i>minimalist</i></b>, and <b><i>eternal optimist</i></b>.</p>
+          <p>I love to both build and break things. I am motivated by challenging projects with people from different disciplines, and I thrive on dynamic problem solving at the intersection of hardware and software.</p>
+          <p>Professionally, I have worked as an <b>AI & Data Engineering Consultant at Deloitte</b>, a <b>DevOps Intern at Sailpoint</b>, and spent two years leading embedded systems development at the <b>VantTec Robotics Research Group</b> at ITESM.</p>
+          <p>On my free time I love exploring creative skills, finding balance, and building more integrative solutions.</p>
+          <p>Check out my work and projects below!</p>
         </article>
       </section>
     </div>
@@ -127,27 +111,22 @@ const roboticsSkills = [
           <p class="font-semibold text-black dark:text-white">
             My skills
           </p>
-          <div class="flex flex-wrap items-center gap-2 mt-5">
-            {stack.map(item => (
-              <StackCard 
-                text={item.text}
-                icon={item.icon}
-                href={item.href}
-              />
-            ))}
-          </div>
-          <p>
-            Robotics
-          </p>
-          <div class="flex flex-wrap items-center gap-2 mt-5">
-            {roboticsSkills.map(item => (
-              <StackCard 
-                text={item.text}
-                icon={item.icon}
-                href={item.href}
-              />
-            ))}
-          </div>
+          {skillCategories.map(category => (
+            <div>
+              <p class="text-sm font-medium opacity-60 mb-2 mt-4">
+                {category.label}
+              </p>
+              <div class="flex flex-wrap items-center gap-2">
+                {category.skills.map(item => (
+                  <StackCard 
+                    text={item.text}
+                    icon={item.icon}
+                    href={item.href}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

@@ -47,7 +47,7 @@ export const LINKS: Links = [
   },
   {
     TEXT: "Resume",
-    HREF: ""
+    HREF: "https://drive.google.com/your-resume-link-here" // TODO: Replace with your actual Google Drive link
   }
 ]
 
