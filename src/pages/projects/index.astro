@@ -19,8 +19,8 @@ const projects = (await getCollection("projects"))
           <path d="M2 12h20M12 2v20"></path>
         </svg>
       </div>
-      <p class="font-eyebrow-mono text-primary mb-4 uppercase tracking-[0.14em]">SELECTED WORKS</p>
-      <h1 class="font-display-hero text-5xl text-on-surface leading-[0.9] font-bold">Technical Projects</h1>
+      <p class="animate font-eyebrow-mono text-primary mb-4 uppercase tracking-[0.14em]">SELECTED WORKS</p>
+      <h1 class="animate font-display-hero text-5xl text-on-surface leading-[0.9] font-bold" style="--anim-delay: 100ms">Technical Projects</h1>
     </header>
 
     <!-- Project Grid -->
@@ -31,7 +31,7 @@ const projects = (await getCollection("projects"))
         const isGlass = index % 3 === 1;
 
         return (
-          <a href={`/projects/${project.slug}`} class={`group block h-full ${isWide ? 'md:col-span-2' : ''}`}>
+          <a href={`/projects/${project.slug}`} class={`animate group block h-full ${isWide ? 'md:col-span-2' : ''}`}>
             <article class={`
               ${isGlass ? 'bg-white/[0.04] backdrop-blur-[20px] border-[0.5px] border-white/[0.08] mt-0 md:mt-24' : 'bg-surface-container border-[0.5px] border-outline-variant/30'}
               p-8 relative flex flex-col h-full transition-transform hover:-translate-y-2 duration-500
