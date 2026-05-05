@@ -3,7 +3,7 @@ import type { Site, Page, Links, Socials } from "@types"
 // Global
 export const SITE: Site = {
   TITLE: "Ian Javier Duran Román",
-  DESCRIPTION: "Welcome to my portfolio, a good balance betweeen software development and creative design.",
+  DESCRIPTION: "Welcome to my portfolio, a good balance between software development and creative design.",
   AUTHOR: "Ian Duran",
 }
 

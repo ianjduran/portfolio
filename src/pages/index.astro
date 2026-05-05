@@ -1,184 +1,171 @@
 ---
 import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
-import ArrowCard from "@components/ArrowCard"
-import StackCard from "@components/StackCard.astro"
-import { SITE, SOCIALS } from "@consts"
+import { SITE } from "@consts"
 
 const projects = (await getCollection("projects"))
   .filter(project => !project.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0,3)
-
-const skillCategories = [
-  {
-    label: "Embedded & Robotics",
-    skills: [
-      { text: "Embedded C/C++", icon: "", href: "" },
-      { text: "ROS/ROS2", icon: "", href: "" },
-      { text: "PCB Design", icon: "", href: "" },
-      { text: "CAN Protocol", icon: "", href: "" },
-      { text: "RTOS", icon: "", href: "" },
-      { text: "KiCad", icon: "", href: "" },
-      { text: "Sensor Fusion", icon: "", href: "" },
-      { text: "Linux", icon: "", href: "" },
-    ]
-  },
-  {
-    label: "Cloud & Data",
-    skills: [
-      { text: "AWS (S3, Lambda, Glue)", icon: "", href: "" },
-      { text: "Python", icon: "", href: "" },
-      { text: "PostgreSQL", icon: "", href: "" },
-      { text: "MySQL", icon: "", href: "" },
-      { text: "Terraform", icon: "", href: "" },
-      { text: "Power BI", icon: "", href: "" },
-    ]
-  },
-  {
-    label: "DevOps & Monitoring",
-    skills: [
-      { text: "Docker", icon: "", href: "" },
-      { text: "Kubernetes", icon: "", href: "" },
-      { text: "Prometheus", icon: "", href: "" },
-      { text: "Grafana", icon: "", href: "" },
-      { text: "OpenSearch", icon: "", href: "" },
-      { text: "Git", icon: "", href: "" },
-    ]
-  },
-  {
-    label: "Web",
-    skills: [
-      { text: "Javascript", icon: "javascript", href: "https://www.javascript.com" },
-      { text: "Typescript", icon: "typescript", href: "https://www.typescriptlang.org" },
-      { text: "Astro", icon: "astro", href: "https://astro.build" },
-      { text: "Tailwind CSS", icon: "tailwind", href: "https://tailwindcss.com" },
-    ]
-  },
-]
+  .slice(0, 3)
 ---
 
 <PageLayout title="Home" description={SITE.DESCRIPTION}>
-
-
   
-  <!-- HERO -->
-  <section class="relative h-screen w-full">
+  <!-- Background Technical Motifs -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-20 z-0" aria-hidden="true">
+    <!-- Crosshairs -->
+    <svg class="absolute top-32 left-12 w-8 h-8 text-primary" viewBox="0 0 100 100">
+      <line stroke="currentColor" stroke-width="0.5" x1="50" x2="50" y1="0" y2="100"></line>
+      <line stroke="currentColor" stroke-width="0.5" x1="0" x2="100" y1="50" y2="50"></line>
+      <circle cx="50" cy="50" fill="none" r="10" stroke="currentColor" stroke-width="0.5"></circle>
+    </svg>
+    <svg class="absolute bottom-32 right-12 w-12 h-12 text-primary" viewBox="0 0 100 100">
+      <line stroke="currentColor" stroke-width="1" x1="50" x2="50" y1="20" y2="80"></line>
+      <line stroke="currentColor" stroke-width="1" x1="20" x2="80" y1="50" y2="50"></line>
+      <rect fill="none" height="50" stroke="currentColor" stroke-width="0.5" width="50" x="25" y="25"></rect>
+    </svg>
+    <!-- Dimension Lines -->
+    <div class="absolute top-1/2 left-8 -translate-y-1/2 flex flex-col items-center gap-2">
+      <div class="w-[1px] h-32 bg-primary/40"></div>
+      <span class="font-eyebrow-mono text-primary rotate-90 whitespace-nowrap">REF_774.2</span>
+      <div class="w-[1px] h-32 bg-primary/40"></div>
+    </div>
+    <!-- Coordinate Markers -->
+    <div class="absolute top-1/4 right-24 font-eyebrow-mono text-primary/30">
+        X: 40.7128<br/>Y: -74.0060
+    </div>
+  </div>
+
+  <!-- Hero Canvas Section -->
+  <section class="relative z-10 max-w-[1440px] mx-auto px-4 md:px-12 pt-12 md:pt-24 pb-24 grid grid-cols-12 gap-8 items-center">
+    <div class="col-span-12 lg:col-span-7 flex flex-col gap-6">
+      <div class="flex items-center gap-4">
+        <span class="w-12 h-[1px] bg-primary-container"></span>
+        <span class="font-eyebrow-mono text-primary-container uppercase tracking-[0.2em]">Robotics and Digital Systems Engineer</span>
+      </div>
+      <h1 class="font-display-hero text-5xl text-on-surface leading-[0.9] max-w-2xl font-bold">
+        Ian Javier<br/>Duran Román
+      </h1>
+      <p class="font-body-main text-on-surface-variant max-w-lg mt-4">
+        Analytical and detail-oriented engineer passionate about robotics, embedded systems, and digital technologies. Strong problem-solving mindset, fast learner, and driven to build reliable, high-quality technical solutions.
+      </p>
+      <div class="flex flex-wrap gap-6 mt-8">
+        <a href="/projects" class="bg-primary-container text-base-bg px-8 py-4 rounded-none font-label-caps uppercase font-bold hover:bg-primary transition-colors flex items-center gap-2 group">
+          See my projects!
+          <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+        <a href="/work" class="border border-outline-variant text-on-surface px-8 py-4 rounded-none font-label-caps uppercase font-medium hover:bg-surface-variant transition-colors">
+          See my work
+        </a>
+      </div>
+    </div>
     
-    <div class="animate absolute h-full w-full flex items-center">
-      <div class='mx-auto md:ml-32 relative w-full h-full flex items-center'>
-        <div class='p-5'>
-          <p class='animated text-lg md:text-xl lg:text-lg opacity-75 font-display tracking-wide'>
-            Hey There! My name is
-          </p>
-          <p class='animated text-3xl md:text-4xl lg:text-6xl font-bold font-display bg-gradient-to-r from-primary via-blue-400 to-teal-400 bg-clip-text text-transparent pb-2'>
-            Ian Javier Duran Román
-          </p>
-          <p class='animated text-sm md:text-base font-medium lg:text-lg opacity-75 font-display tracking-widest uppercase'>
-            Robotics and Digital Systems Engineer
-          </p>
-          <div id="ctaButtons" class='animated flex flex-wrap gap-4 mt-5'>
-            <a href='/projects' class='py-2 px-6 rounded-lg truncate text-xs md:text-sm lg:text-base bg-primary text-white hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(37,123,244,0.4)] transition-all duration-300 font-display tracking-wide'>
-              Get my resume!
-            </a>
-            <a href='/work' class='py-2 px-6 truncate rounded-lg text-xs md:text-sm lg:text-base border border-black/20 dark:border-white/20 hover:border-primary dark:hover:border-primary hover:bg-primary/5 hover:text-primary dark:hover:bg-primary/10 transition-all duration-300 font-display tracking-wide backdrop-blur-sm'>
-              View my work
-            </a>
+    <!-- Visual Reference Block -->
+    <div class="col-span-12 lg:col-span-5 relative group mt-12 lg:mt-0">
+      <div class="absolute -inset-4 border border-white/5 pointer-events-none hidden md:block"></div>
+      <div class="absolute -top-2 -right-2 w-4 h-4 border-t border-r border-primary/50"></div>
+      <div class="absolute -bottom-2 -left-2 w-4 h-4 border-b border-l border-primary/50"></div>
+      <div class="relative bg-surface-container-low overflow-hidden border border-outline-variant/30">
+        <div class="absolute inset-0 grid-bg-sm"></div>
+        <svg class="absolute inset-0 w-3/4 h-3/4 m-auto text-white/20" fill="none" stroke="currentColor" stroke-width="0.5" viewBox="0 0 200 100">
+          <rect height="60" width="80" x="20" y="20"></rect>
+          <rect height="60" width="60" x="120" y="20"></rect>
+          <path d="M100 50 L120 50" stroke-dasharray="4 4"></path>
+          <circle cx="60" cy="50" r="15"></circle>
+          <circle cx="150" cy="50" r="10"></circle>
+        </svg>
+        <!-- Glassmorphic Overlay -->
+        <div class="absolute bottom-6 left-6 right-6 backdrop-blur-xl bg-white/5 border border-white/10 p-6">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-eyebrow-mono text-[9px] text-primary-container">SYS_LOG: ACTIVE_PROCESS</span>
+            <span class="material-symbols-outlined text-primary-container text-sm">terminal</span>
+          </div>
+          <div class="space-y-2">
+            <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full bg-primary-container w-[72%]"></div>
+            </div>
+            <p class="font-eyebrow-mono text-[10px] text-on-surface/60">INTEGRITY_CHECK: OPTIMAL // 0xFA42</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="relative bg-white dark:bg-black">
-    <div class="mx-auto md:ml-32 max-w-screen-sm p-5 space-y-24 pb-16">
-
-      <!-- About Section -->
-      <section class="animate">
-        <article>
-          <p>I am passionate about <b><i>Embedded Systems, Robotics, and Cloud Engineering</i></b> — and equally enthusiastic about design and photography. Also known as a <b><i>builder</i></b>, <b><i>minimalist</i></b>, and <b><i>eternal optimist</i></b>.</p>
-          <p>I love to both build and break things. I am motivated by challenging projects with people from different disciplines, and I thrive on dynamic problem solving at the intersection of hardware and software.</p>
-          <p>Professionally, I have worked as an <b>AI & Data Engineering Consultant at Deloitte</b>, a <b>DevOps Intern at Sailpoint</b>, and spent two years leading embedded systems development at the <b>VantTec Robotics Research Group</b> at ITESM.</p>
-          <p>On my free time I love exploring creative skills, finding balance, and building more integrative solutions.</p>
-          <p>Check out my work and projects below!</p>
-        </article>
-      </section>
-    </div>
-    <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
-      <!-- Tech Stack Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <p class="font-semibold text-black dark:text-white">
-            My skills
-          </p>
-          {skillCategories.map(category => (
-            <div>
-              <p class="text-sm font-medium opacity-60 mb-2 mt-4">
-                {category.label}
-              </p>
-              <div class="flex flex-wrap items-center gap-2">
-                {category.skills.map(item => (
-                  <StackCard 
-                    text={item.text}
-                    icon={item.icon}
-                    href={item.href}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+  <!-- Bento Grid Feature Section -->
+  <section class="relative z-10 max-w-[1440px] mx-auto px-4 md:px-12 py-24 border-t border-white/5">
+    <div class="grid grid-cols-12 gap-8">
+      
+      <!-- Large Featured Bento (About) -->
+      <div class="col-span-12 md:col-span-8 bg-surface-container border border-outline-variant/20 p-12 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+          <span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">architecture</span>
         </div>
-      </section>
-
-      <!-- Project Preview Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">
-              Recent projects
-            </p>
-            <a href="/projects" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                All projects
-              </span>
-            </a>
+        <div class="relative z-10">
+          <span class="font-eyebrow-mono text-primary uppercase mb-4 block">Core Competencies</span>
+          <h2 class="font-heading-section mb-6">Engineered Precision in Every Layer</h2>
+          <div class="font-body-main text-on-surface-variant max-w-2xl space-y-4">
+            <p>I am passionate about <strong class="text-on-surface font-medium">Embedded Systems, Robotics, and Cloud Engineering</strong> — and equally enthusiastic about design and photography.</p>
+            <p>I love to both build and break things. I am motivated by challenging projects with people from different disciplines, and I thrive on dynamic problem solving at the intersection of hardware and software.</p>
           </div>
-          <ul class="space-y-4">
-            {projects.map((project) => (
-              <li>
-                <ArrowCard entry={project} />
-              </li>
-            ))}
-          </ul>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-eyebrow-mono text-[10px]">EMBEDDED_C++</span>
+            <span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-eyebrow-mono text-[10px]">CLOUD_ARCH</span>
+            <span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-eyebrow-mono text-[10px]">SYSTEMS_DEV</span>
+          </div>
         </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section class="animate">
+        <svg class="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none hidden md:block text-primary" fill="none" stroke="currentColor" stroke-width="0.5" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40"></circle>
+          <circle cx="50" cy="50" r="30" stroke-dasharray="4 4"></circle>
+          <path d="M50 0 L50 100 M0 50 L100 50"></path>
+        </svg>
+      </div>
+      
+      <!-- Secondary Vertical Bento -->
+      <div class="col-span-12 md:col-span-4 bg-[#161a1f] border border-outline-variant/20 p-8 flex flex-col justify-between">
         <div>
-          <p class="font-semibold text-black dark:text-white">
-            Let's Connect
-          </p>
-          <p>
-            Reach out to me via email or on social media.
-          </p>
-          <div class="grid grid-cols-4 gap-y-2 mt-4 auto-cols-min">
-            {SOCIALS.map(social => (
-              <div class="col-span-1 flex items-center gap-1">
-                <span class="whitespace-nowrap truncate">
-                  {social.NAME}
-                </span>
-              </div>
-              <div class="col-span-3 truncate">
-                <a href={social.HREF} target="_blank" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-                  <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                    {social.TEXT}
-                  </span>
-                </a>
-              </div>
-            ))}
+          <span class="material-symbols-outlined text-primary mb-6">settings_input_component</span>
+          <h3 class="font-heading-section text-2xl mb-4">Modular Systems</h3>
+          <p class="font-body-main text-sm text-on-surface-variant">Developing scalable components that act as the building blocks for complex digital ecosystems.</p>
         </div>
-      </section>
+        <div class="mt-12 h-32 bg-surface-container-lowest border border-white/5 relative overflow-hidden">
+          <div class="absolute inset-0 grid-bg-sm"></div>
+          <svg class="absolute inset-0 w-full h-full p-4 text-white/20" fill="none" stroke="currentColor" stroke-width="0.5" viewBox="0 0 100 100">
+            <rect x="20" y="20" width="60" height="60"></rect>
+            <line x1="20" y1="20" x2="80" y2="80"></line>
+            <line x1="80" y1="20" x2="20" y2="80"></line>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Small Grid Items -->
+      <div class="col-span-12 md:col-span-4 bg-surface-container-high border border-outline-variant/20 p-8 aspect-video md:aspect-square flex flex-col justify-center text-center">
+        <div class="text-4xl font-display-hero text-primary mb-2">99.9%</div>
+        <div class="font-eyebrow-mono text-[10px] uppercase text-on-surface/40">Reliability Index</div>
+      </div>
+      
+      <!-- Featured Project Wide Bento -->
+      {projects[0] && (
+        <a href={`/projects/${projects[0].slug}`} class="col-span-12 md:col-span-8 relative overflow-hidden min-h-[300px] border border-outline-variant/20 group block">
+          <div class="absolute inset-0 grid-bg-sm"></div>
+          <svg class="absolute inset-0 w-full h-full text-white/20 group-hover:scale-105 transition-transform duration-700 p-12" fill="none" stroke="currentColor" stroke-width="0.5" viewBox="0 0 200 100">
+            <path d="M20 90 Q 50 10 100 90 T 180 90" fill="none"></path>
+            <circle cx="100" cy="50" fill="currentColor" r="2"></circle>
+            <path d="M100 50 L100 90" stroke-dasharray="2 2"></path>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-base-bg via-base-bg/50 to-transparent"></div>
+          <div class="absolute bottom-8 left-8 right-8 flex justify-between items-end">
+            <div class="z-10">
+              <span class="font-eyebrow-mono text-[10px] uppercase text-primary mb-2 block">Featured Architecture</span>
+              <h3 class="font-heading-section text-2xl group-hover:text-primary transition-colors">{projects[0].data.title}</h3>
+              <p class="font-body-main text-sm text-on-surface-variant max-w-lg mt-2 line-clamp-2">{projects[0].data.summary}</p>
+            </div>
+            <div class="hidden md:flex z-10">
+              <span class="material-symbols-outlined text-primary">arrow_outward</span>
+            </div>
+          </div>
+        </a>
+      )}
     </div>
-  </div>
+  </section>
+
 </PageLayout>

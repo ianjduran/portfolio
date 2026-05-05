@@ -1,28 +1,98 @@
 ---
 import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
-import TopLayout from "@layouts/TopLayout.astro"
-import BottomLayout from "@layouts/BottomLayout.astro"
-import Projects from "@components/Projects"
 import { PROJECTS } from "@consts"
 
 const projects = (await getCollection("projects"))
   .filter(project => !project.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-
-const tags = [...new Set(projects.flatMap(project => project.data.tags))]
-  .sort((a, b) => a.localeCompare(b))
 ---
 
 <PageLayout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
-  <TopLayout>
-    <div class="animate page-heading">
-      {PROJECTS.TITLE}
+  
+  <div class="max-w-[1440px] mx-auto px-4 md:px-12 pt-12 md:pt-24 pb-32">
+    <!-- Section Header -->
+    <header class="mb-24 relative">
+      <div class="absolute -left-6 top-2 text-white/20 hidden md:block" aria-hidden="true">
+        <svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="12">
+          <path d="M0 0h24v24H0z" stroke="none"></path>
+          <path d="M2 12h20M12 2v20"></path>
+        </svg>
+      </div>
+      <p class="font-eyebrow-mono text-primary mb-4 uppercase tracking-[0.14em]">SELECTED WORKS</p>
+      <h1 class="font-display-hero text-5xl text-on-surface leading-[0.9] font-bold">Technical Projects</h1>
+    </header>
+
+    <!-- Project Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">
+      {projects.map((project, index) => {
+        // Determine layout based on index for variety
+        const isWide = index % 3 === 2;
+        const isGlass = index % 3 === 1;
+
+        return (
+          <a href={`/projects/${project.slug}`} class={`group block h-full ${isWide ? 'md:col-span-2' : ''}`}>
+            <article class={`
+              ${isGlass ? 'bg-white/[0.04] backdrop-blur-[20px] border-[0.5px] border-white/[0.08] mt-0 md:mt-24' : 'bg-surface-container border-[0.5px] border-outline-variant/30'}
+              p-8 relative flex flex-col h-full transition-transform hover:-translate-y-2 duration-500
+            `}>
+              <!-- Corner Mark -->
+              <div class={`absolute top-0 right-0 w-8 h-8 border-t-[0.5px] border-r-[0.5px] border-primary opacity-50 group-hover:opacity-100 transition-opacity`}></div>
+              
+              <div class={`${isWide ? 'grid grid-cols-1 md:grid-cols-2 gap-8' : 'flex flex-col'} h-full`}>
+                
+                {/* Technical Abstract Graphic area */}
+                <div class={`${isWide ? 'order-1 md:order-2 aspect-video md:aspect-auto h-full min-h-[300px]' : 'aspect-[1.5] w-full mb-8'} overflow-hidden bg-base-bg border-[0.5px] border-white/5 relative flex items-center justify-center`}>
+                  <div class="absolute inset-0 grid-bg-sm"></div>
+                  
+                  {isGlass ? (
+                    <svg class="w-3/4 h-3/4 text-white/20" fill="none" stroke="currentColor" stroke-width="0.5" viewBox="0 0 200 100">
+                      <rect height="60" width="80" x="20" y="20"></rect>
+                      <rect height="60" width="60" x="120" y="20"></rect>
+                      <path d="M100 50 L120 50" stroke-dasharray="4 4"></path>
+                      <circle cx="60" cy="50" r="15"></circle>
+                      <circle cx="150" cy="50" r="10"></circle>
+                    </svg>
+                  ) : isWide ? (
+                    <svg class="w-full h-full text-white/20" fill="none" stroke="currentColor" stroke-width="0.5" viewBox="0 0 200 200">
+                      <path d="M20 180 Q 80 20 180 180" fill="none"></path>
+                      <path d="M40 160 Q 100 40 160 160" fill="none" stroke-dasharray="4 4"></path>
+                      <circle cx="80" cy="100" fill="currentColor" r="4"></circle>
+                      <circle cx="120" cy="100" fill="currentColor" r="4"></circle>
+                      <path d="M80 100 L120 100" stroke-dasharray="2 2"></path>
+                    </svg>
+                  ) : (
+                    <svg class="w-2/3 h-2/3 text-white/20" fill="none" stroke="currentColor" stroke-width="0.5" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="30"></circle>
+                      <circle cx="50" cy="50" r="20" stroke-dasharray="2 2"></circle>
+                      <path d="M50 10 L50 90 M10 50 L90 50"></path>
+                      <rect height="40" width="40" x="30" y="30"></rect>
+                    </svg>
+                  )}
+                  
+                  <div class="absolute bottom-4 right-4 text-[10px] font-eyebrow-mono text-primary uppercase">[FIG 0{index + 1}]</div>
+                </div>
+
+                <div class={`flex-grow flex flex-col justify-end ${isWide ? 'order-2 md:order-1 justify-center' : ''}`}>
+                  <p class="font-eyebrow-mono text-primary mb-2 uppercase">{project.data.date.getFullYear()}</p>
+                  <h2 class="font-heading-section text-3xl md:text-4xl text-on-surface mb-4 font-serif group-hover:text-primary transition-colors">{project.data.title}</h2>
+                  <p class="font-body-main text-on-surface-variant mb-6 flex-grow">{project.data.summary}</p>
+                  
+                  <div class="flex flex-wrap gap-2 mt-auto">
+                    {project.data.tags.map(tag => (
+                      <span class="px-3 py-1 bg-primary/10 border-[0.5px] border-primary/30 rounded-full font-eyebrow-mono text-[10px] uppercase tracking-wider text-primary">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </article>
+          </a>
+        )
+      })}
     </div>
-  </TopLayout>
-  <BottomLayout>
-    <div class="animate">
-      <Projects client:load tags={tags} data={projects} />
-    </div>
-  </BottomLayout>
+  </div>
+
 </PageLayout>

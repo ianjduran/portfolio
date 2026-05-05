@@ -1,98 +1,101 @@
 ---
-import { SITE, LINKS } from "@consts"
-import { cn } from "@lib/utils"
-const { pathname } = Astro.url
-const subpath = pathname.match(/[^/]+/g)
-import Container from "@components/Container.astro"
+import { LINKS } from "@consts"
+
+const pathname = Astro.url.pathname
+const currentPath = pathname.replace(/\/$/, "") || "/"
 ---
 
-<header id="header" class="fixed top-0 w-full h-16 z-50 ">
-  <Container size="md">
-    <div class="relative h-full w-full">
-      <div class="absolute left-0 top-1/2 -translate-y-1/2 flex gap-1 font-semibold">
-        <a href="/" class="flex gap-1 text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
-          <!-- <svg class="size-6 fill-current">
-            <use href="/brand.svg#brand"></use>
-          </svg> -->
-          <div>
-            {SITE.TITLE}
-          </div>
+<header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="navbar">
+  <nav class="flex justify-between items-center px-12 py-8 max-w-[1440px] mx-auto">
+    <div class="text-xl font-bold text-on-surface tracking-tighter font-heading-section">
+      <a href="/">Ian Javier Duran Román</a>
+    </div>
+
+    <div class="hidden md:flex items-center backdrop-blur-md bg-white/5 rounded-full px-6 py-2 border border-white/10 gap-8">
+      {LINKS.map((link) => {
+        const isActive = link.HREF === "/" ? currentPath === "/" : currentPath.startsWith(link.HREF)
+
+        return (
+          <a
+            href={link.HREF}
+            target={link.TEXT.toLowerCase() === 'resume' ? "_blank" : undefined}
+            rel={link.TEXT.toLowerCase() === 'resume' ? "noopener noreferrer" : undefined}
+            class={`font-heading-section uppercase tracking-tight transition-all duration-300 ${
+              isActive
+                ? "text-primary-container font-bold border-b border-primary-container"
+                : "text-on-surface-variant hover:text-primary-container"
+            }`}
+          >
+            {link.TEXT}
+          </a>
+        )
+      })}
+
+      <div class="flex items-center gap-4 ml-4 pl-4 border-l border-white/10">
+        <a href="/search" class="text-on-surface-variant hover:text-primary-container transition-colors" aria-label="Search">
+          <span class="material-symbols-outlined text-[20px]">search</span>
         </a>
       </div>
-
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      <nav class="hidden md:flex items-center justify-center text-sm gap-1">
-        {
-          LINKS.map((LINK) => (
-            <a href={LINK.HREF} class={cn("h-8 rounded-full px-3 text-current", "flex items-center justify-center", "transition-colors duration-300 ease-in-out", pathname === LINK.HREF || "/" + subpath?.[0] === LINK.HREF ? "bg-sky-500 text-white  " : "hover:bg-black/5 dark:hover:bg-white/20 hover:text-black dark:hover:text-white")}>
-              {LINK.TEXT}
-            </a>
-          ))
-        }
-      </nav>
     </div>
 
-    <div class="buttons absolute right-0 top-1/2 -translate-y-1/2 flex gap-1">
-      <a href="/search" aria-label={`Search blog posts and projects on ${SITE.TITLE}`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out", pathname === "/search" || "/" + subpath?.[0] === "/search" ? "pointer-events-none bg-black dark:bg-white text-white dark:text-black" : "")}>
-        <svg class="size-full">
-          <use href="/ui.svg#search"></use>
-        </svg>
-      </a>
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden text-on-surface p-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </nav>
 
-
-      <button id="header-theme-button" aria-label={`Toggle light and dark theme`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
-        <svg class="size-full block dark:hidden">
-          <use href="/ui.svg#sun"></use>
-        </svg>
-        <svg class="size-full hidden dark:block">
-          <use href="/ui.svg#moon"></use>
-        </svg>
-      </button>
-
-      <button id="header-drawer-button" aria-label={`Toggle drawer open and closed`} class={cn("flex md:hidden", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
-        <svg id="drawer-open" class="size-full">
-          <use href="/ui.svg#menu"></use>
-        </svg>
-        <svg id="drawer-close" class="size-full">
-          <use href="/ui.svg#x"></use>
-        </svg>
-      </button>
-    </div>
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-menu" class="fixed inset-0 bg-base-bg/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8">
+    <button id="close-menu-btn" class="absolute top-8 right-12 text-on-surface p-2" aria-label="Close menu">
+      <span class="material-symbols-outlined text-3xl">close</span>
+    </button>
+    
+    {LINKS.map((link) => {
+      const isActive = link.HREF === "/" ? currentPath === "/" : currentPath.startsWith(link.HREF)
+      return (
+        <a
+          href={link.HREF}
+          target={link.TEXT.toLowerCase() === 'resume' ? "_blank" : undefined}
+          class={`font-heading-section text-3xl uppercase tracking-tight ${
+            isActive ? "text-primary-container" : "text-on-surface-variant"
+          }`}
+        >
+          {link.TEXT}
+        </a>
+      )
+    })}
   </div>
-  </Container>
 </header>
 
-<style>
-  #header-drawer-button > #drawer-open {
-    @apply block;
+<script>
+  // Mobile Menu Logic
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const closeMenuBtn = document.getElementById("close-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  function toggleMenu() {
+    mobileMenu?.classList.toggle("hidden");
+    mobileMenu?.classList.toggle("flex");
+    document.body.classList.toggle("overflow-hidden");
+    const isOpen = mobileMenu?.classList.contains("flex") ?? false;
+    if (mobileMenuBtn) {
+      mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+      mobileMenuBtn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    }
   }
 
-  #header-drawer-button > #drawer-close {
-    @apply hidden;
-  }
+  mobileMenuBtn?.addEventListener("click", toggleMenu);
+  closeMenuBtn?.addEventListener("click", toggleMenu);
 
-  #header-drawer-button.open > #drawer-open {
-    @apply hidden;
-  }
-
-  #header-drawer-button.open > #drawer-close {
-    @apply block;
-  }
-</style>
-
-<script is:inline>
-  function toggleDrawer() {
-    const drawer = document.getElementById("drawer")
-    const drawerButton = document.getElementById("header-drawer-button")
-    drawer?.classList.toggle("open")
-    drawerButton?.classList.toggle("open")
-  }
-
-  function initializeDrawerButton() {
-    const drawerButton = document.getElementById("header-drawer-button")
-    drawerButton?.addEventListener("click", toggleDrawer)
-  }
-
-  document.addEventListener("astro:after-swap", initializeDrawerButton)
-  initializeDrawerButton()
+  // Navbar scroll logic
+  const navbar = document.getElementById("navbar");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      navbar?.classList.add("backdrop-blur-md", "bg-base-bg/80", "border-b", "border-white/5", "py-2");
+      navbar?.querySelector('nav')?.classList.replace("py-8", "py-4");
+    } else {
+      navbar?.classList.remove("backdrop-blur-md", "bg-base-bg/80", "border-b", "border-white/5", "py-2");
+      navbar?.querySelector('nav')?.classList.replace("py-4", "py-8");
+    }
+  });
 </script>

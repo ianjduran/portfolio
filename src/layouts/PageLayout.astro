@@ -3,20 +3,18 @@ import "@styles/global.css"
 import BaseHead from "@components/BaseHead.astro"
 import Header from "@components/Header.astro"
 import Footer from "@components/Footer.astro"
-import Drawer from "@components/Drawer.astro"
 const { title, description } = Astro.props
 import { SITE } from "@consts"
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <BaseHead title={`${title} | ${SITE.TITLE}`} description={description} />
   </head>
-  <body>
+  <body class="bg-base-bg text-on-surface font-body-main selection:bg-primary-container selection:text-on-primary-container min-h-screen">
     <Header />
-    <Drawer />
-    <main>
+    <main class="relative min-h-screen engineering-grid pt-32 pb-24 overflow-hidden">
       <slot />
     </main>
     <Footer />
